@@ -4,17 +4,28 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [midiAccess, setMidiAccess] = useState(null);
   const [messages, setMessages] = useState([]); // Stores incoming MIDI data
-
+  const [midiInputs, setMidiInputs] = useState([]);
+  
   useEffect(() => {
     if (typeof navigator !== "undefined" && navigator.requestMIDIAccess) {
       navigator.requestMIDIAccess().then((midi) => {
         setMidiAccess(midi);
+        updateMidiInputs(midi);
+        midi.onstatechange = () => updateMidiInputs(midi);
         for (let input of midi.inputs.values()) {
           input.onmidimessage = handleMidiMessage;
         }
       }).catch((err) => console.error("MIDI access failed", err));
     }
   }, []);
+
+  const updateMidiInputs = (midi) => {
+    const inputs = Array.from(midi.inputs.values()).map((input) => ({
+      id: input.id,
+      name: input.name,
+    }));
+    setMidiInputs(inputs);
+  };
 
   const handleMidiMessage = (message) => {
     const [command, note, velocity] = message.data;
@@ -37,14 +48,26 @@ export default function Home() {
 
     setMessages((prev) => [...prev.slice(-9), newMessage]); // Keep only the last 10 messages
   };
-
+  
   return (
     <div className="p-4 text-white">
       <h1 className="text-xl font-bold">MIDI Debugger</h1>
       {midiAccess ? (
-        <p className="text-green-400">MIDI Connected ✅</p>
+        <>
+        <p className="text-green-400">MIDI Access</p>
+        <ul className="mt-4">
+            {midiInputs.length > 0 ? (
+              midiInputs.map((device) => (
+                <li key={device.id} className="text-gray-300">
+                  {device.name}
+                </li>
+              ))
+            ) : (
+              <p className="text-gray-500">No MIDI devices found.</p>
+            )}
+          </ul></>
       ) : (
-        <p className="text-red-500">No MIDI device detected ❌</p>
+        <p className="text-red-500">No MIDI Access </p>
       )}
       <div className="mt-4 p-2 bg-gray-800 rounded">
         <h2 className="text-lg font-semibold">MIDI Messages:</h2>
