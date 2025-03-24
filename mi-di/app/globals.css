@@ -34,6 +34,14 @@ body {
   gap: var(--gap) var(--gap);
 }
 
+.about-layout {
+  height: 100svh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: var(--gap) var(--gap);
+}
+
 .main-card {
   display: flex;
   flex-direction: column;
@@ -60,6 +68,22 @@ body {
   grid-area: -1 / 1 / -2 / 3 ;
 }
 
+.about-card.title {
+  grid-area: 2 / 2 / 4 / 4 ;
+}
+
+.about-card.bg-main {
+  grid-area: 2 / 4 / 4 / 5 ;
+}
+.about-card.bg-dark {
+  grid-area: 4 / 2 / 5 / 3 ;
+}
+.about-card.bg-light {
+  grid-area: 4 / 3 / 5 / 4 ;
+}
+.about-card.bg-lighter {
+  grid-area: 4 / 4 / 5 / 5 ;
+}
 /* Color Theme Swatches in Hex */
 .text-dark { color: #012030; }
 .text-main { color: #13678A; }
