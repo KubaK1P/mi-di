@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Midi Visualiser",
-  description: "A project of a lazy ass",
+  description: "A project of a lazy ass programmer",
 };
 
 export default function RootLayout({ children }) {
