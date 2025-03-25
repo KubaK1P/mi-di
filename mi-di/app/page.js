@@ -2,7 +2,7 @@
 // import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Back from "./components/Back";
+import Back from "./components/Back/Back";
 export default function Home() {
     const handleScroll = (section) => {
         document.getElementById(section)?.scrollIntoView({ behavior: "smooth", alignToTop: true });
@@ -25,11 +25,11 @@ export default function Home() {
                 <nav className="group transition-all p-4 hover:mt-4 block main-card rounded-lg bg-lighter">
                     <ul className="transition-all mt-8 group-hover:mt-4 mb-4 pl-2 text-lg text-dark font-normal tracking-wide">
                         <li>
-                            <a onClick={() => handleScroll("midi")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Mi-di project</a>
+                            <Link href="/main" className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Mi-di project</Link>
                             <ul>
-                                <li className=""><Link href="/debug" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di info</Link></li>
-                                <li className=""><Link href="/main" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di main</Link></li>
-                                <li className=""><Link href="/chords" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di chords</Link></li>
+                                <li className=""><Link href="/main/debug" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di info</Link></li>
+                                <li className=""><Link href="/main/visualiser" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di visualiser</Link></li>
+                                <li className=""><Link href="/main/chords" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di chords</Link></li>
                             </ul>
                         </li>
                         <li>

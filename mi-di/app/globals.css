@@ -116,6 +116,23 @@ color: var(--main);
   animation: back-lines 600ms ease-in-out forwards 1 ;
 }
 
+.cool-text {
+  text-shadow: 
+    10px 10px 0px var(--dark),   /* First duplicate shadow */
+    20px 20px 0px var(--main),  /* Second duplicate shadow */
+    30px 30px 0px var(--accent),   /* First duplicate shadow */
+    40px 40px 0px var(--light),  /* Second duplicate shadow */
+    50px 50px 0px var(--lighter);/* Second duplicate shadow */
+}
+.cool-text-small {
+  text-shadow: 
+    3px 3px 0px var(--dark),   /* First duplicate shadow */
+    6px 6px 0px var(--main),  /* Second duplicate shadow */
+    9px 9px 0px var(--accent),   /* First duplicate shadow */
+    12px 12px 0px var(--light),  /* Second duplicate shadow */
+    15px 15px 0px var(--lighter);/* Second duplicate shadow */
+}
+
 /* Keyframe for moving stripes up */
 @keyframes back-lines {
   0% {
