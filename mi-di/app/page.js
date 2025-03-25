@@ -1,13 +1,13 @@
 "use client"; 
 import { useEffect, useState } from "react";
-
+import Back from "./components/Back";
 export default function Home() {
     const handleScroll = (section) => {
         document.getElementById(section)?.scrollIntoView({ behavior: "smooth", alignToTop: true });
       };
     return (
         <>
-        <div className="p-4 text-white main-layout">
+        <div className="p-4 text-white main-layout" id="lobby">
             <a onClick={() => handleScroll("introduction")} className="group transition-all relative top-0 hover:top-4 p-4 block cursor-pointer main-card rounded-lg bg-dark">
                 <h3 className="transition-all group-hover:underline group-hover:text-3xl text-2xl font-bold tracking-wide text-lighter">Short introduction</h3>
             </a>
@@ -30,10 +30,11 @@ export default function Home() {
             </div>
         </div>
         <div className="p-4 text-white about-layout" id="introduction" >
-            <div className="transition-all relative right-0 hover:right-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
+            <Back handleScroll={handleScroll} column="1" color="dark" />
+            <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
                     <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Hi, I&apos;m Kuba!</h3>
                 </div>
-            <div className="transition-all relative bottom-0 hover:bottom-4 p-6 about-card rounded-lg bg-main">
+            <div className="transition-all relative left-0 hover:left-4 p-6 about-card rounded-lg bg-main">
                     <p className="text-lighter text-xl font-semibold tracking-wide">make this so you can drag this around</p>
             </div>
             <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-dark">
@@ -47,14 +48,14 @@ export default function Home() {
             </div>
                 
         </div>
-        <div className="p-4 text-white h-[100vh]" id="midi" >
-            hola
+        <div className="p-4 text-white h-[100vh] main-layout" id="midi" >
+        <Back handleScroll={handleScroll} column="2" color="main" />
         </div>
-        <div className="p-4 text-white h-[100vh]" id="music" >
-            hola
+        <div className="p-4 text-white h-[100vh] main-layout" id="music" >
+        <Back handleScroll={handleScroll} column="3" color="accent" />
         </div>
-        <div className="p-4 text-white h-[100vh]" id="legacy" >
-            hola
+        <div className="p-4 text-white h-[100vh] main-layout" id="legacy" >
+        <Back handleScroll={handleScroll} column="4" color="light" />
         </div>
       </>
   );

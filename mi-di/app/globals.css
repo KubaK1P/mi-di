@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #012030;
   --gap: 16px;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -26,15 +28,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.main-layout {
-  height: 100svh;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: var(--gap) var(--gap);
-}
-
-.about-layout {
+.main-layout, .about-layout {
   height: 100svh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -65,7 +59,7 @@ body {
 }
 
 .title {
-  grid-area: -1 / 1 / -2 / 3 ;
+  grid-area: -1 / 1 / -2 / 4 ;
 }
 
 .about-card.title {
