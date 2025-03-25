@@ -30,7 +30,7 @@ export default function Home() {
             </div>
         </div>
         <div className="p-4 text-white about-layout" id="introduction" >
-            <Back handleScroll={handleScroll} column="1" color="dark" />
+            <Back handleScroll={handleScroll} row="1" column="1" color="dark" scrollTo="lobby">Go back</Back>
             <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
                     <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Hi, I&apos;m Kuba!</h3>
                 </div>
@@ -49,13 +49,13 @@ export default function Home() {
                 
         </div>
         <div className="p-4 text-white h-[100vh] main-layout" id="midi" >
-        <Back handleScroll={handleScroll} column="2" color="main" />
+        <Back handleScroll={handleScroll} row="1" column="2" color="main" scrollTo="lobby">Go back</Back>
         </div>
         <div className="p-4 text-white h-[100vh] main-layout" id="music" >
-        <Back handleScroll={handleScroll} column="3" color="accent" />
+        <Back handleScroll={handleScroll} row="1" column="3" color="accent" scrollTo="lobby">Go back</Back>
         </div>
         <div className="p-4 text-white h-[100vh] main-layout" id="legacy" >
-        <Back handleScroll={handleScroll} column="4" color="light" />
+        <Back handleScroll={handleScroll} row="1" column="4" color="light" scrollTo="lobby">Go back</Back>
         </div>
       </>
   );
