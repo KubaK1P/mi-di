@@ -1,5 +1,6 @@
 "use client"; 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Back from "./components/Back";
 export default function Home() {
     const handleScroll = (section) => {
@@ -21,16 +22,36 @@ export default function Home() {
                     <h3 className="transition-all group-hover:underline group-hover:text-3xl text-2xl font-bold tracking-wide text-dark">The legacy</h3>
                 </a>
                 <nav className="group transition-all p-4 hover:mt-4 block main-card rounded-lg bg-lighter">
+                    <ul className="transition-all mt-8 group-hover:mt-4 mb-4 pl-2 text-lg text-dark font-normal tracking-wide">
+                        <li>
+                            <a onClick={() => handleScroll("midi")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Mi-di project</a>
+                            <ul>
+                                <li className=""><Link href="/debug" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di info</Link></li>
+                                <li className=""><Link href="/main" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di main</Link></li>
+                                <li className=""><Link href="/chords" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di chords</Link></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a onClick={() => handleScroll("music")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">My music</a>
+                        </li>
+                        <li>
+                            <a onClick={() => handleScroll("legacy")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Other projects</a>
+                            <ul>
+                                <li className=""><a href="https://kubak1p.github.io/Zegar/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Zegar</a></li>
+                                <li className=""><a href="https://github.com/KubaK1P/BCS-python/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">BCS Python</a></li>
+                                <li className=""><a href="https://github.com/KubaK1P/semiquaver" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Semiquaver</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <h3 className="transition-all group-hover:underline group-hover:text-3xl text-2xl font-bold tracking-wide text-dark">Navigation</h3>
                 </nav>
                 <div className="title p-4">
-                    <h1 className="text-accent font-bold text-8xl tracking-wide mb-6">The Lazy Project</h1>
-                    <h2 className="text-right text-main font-semibold text-3xl tracking-wide mb-2">A Jakub Kuś&apos;s original creation...</h2>
-                    <h3 className="text-right text-lighter font-light text-sm tracking-tight">(Scroll to see it)</h3>
+                    <h1 className="text-accent font-bold text-8xl tracking-wide mb-6 underline underline-offset-8">The Lazy Project</h1>
+                    <h2 className="text-light font-semibold text-3xl tracking-wide mb-2">Jakub Kuś&apos;s work in a nutshell</h2>
                 </div>
             </div>
             <div className="p-4 text-white about-layout snap-start" id="introduction" >
-                <Back handleScroll={handleScroll} row="1" column="1" color="dark" scrollTo="lobby">Go back</Back>
+                <Back handleScroll={handleScroll} row="1" column="1" color="dark" scrollTo="lobby">Go to lobby</Back>
                 <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
                         <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Hi, I&apos;m Kuba!</h3>
                     </div>
@@ -57,16 +78,19 @@ export default function Home() {
                 <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-lighter flex items-end">
                         <p className="text-dark text-xl font-semibold tracking-wide">Same thing (now it&apos;s on the bottom)</p>
                 </div>
+                <Back handleScroll={handleScroll} row="5" column="5" color="accent" scrollTo="midi">Next section</Back>
                     
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="midi" >
-            <Back handleScroll={handleScroll} row="1" column="2" color="main" scrollTo="lobby">Go back</Back>
+                <Back handleScroll={handleScroll} row="1" column="1" color="main" scrollTo="lobby">Go to lobby</Back>
+                <Back handleScroll={handleScroll} row="5" column="5" color="light" scrollTo="music">Next section</Back>
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="music" >
-            <Back handleScroll={handleScroll} row="1" column="3" color="accent" scrollTo="lobby">Go back</Back>
+                <Back handleScroll={handleScroll} row="1" column="1" color="accent" scrollTo="lobby">Go to lobby</Back>
+                <Back handleScroll={handleScroll} row="5" column="5" color="main" scrollTo="legacy">Next section</Back>
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="legacy" >
-            <Back handleScroll={handleScroll} row="1" column="4" color="light" scrollTo="lobby">Go back</Back>
+                <Back handleScroll={handleScroll} row="1" column="1" color="light" scrollTo="lobby">Go to lobby</Back>
             </div>
         </div>
     );

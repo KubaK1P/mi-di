@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+body * {
+  box-sizing: border-box;
+}
 
 :root {
   --background: #ffffff;
@@ -45,10 +48,15 @@ body {
   gap: var(--gap) var(--gap);
 }
 
-.main-card {
+:not(nav).main-card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+nav.main-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .main-card.bg-dark {
@@ -102,7 +110,10 @@ body {
   left: 0;
   /* transition: transform 1s ease-in-out; */
 }
-
+.link:hover {
+background: #bfdda3;
+color: var(--main);
+}
 /* Positioning the stripes */
 .stripes-1 { bottom: -10px; }
 .stripes-2 { bottom: -30px; }
