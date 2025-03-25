@@ -1,5 +1,6 @@
 "use client"; 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Back from "./components/Back";
 export default function Home() {
@@ -26,9 +27,9 @@ export default function Home() {
                         <li>
                             <a onClick={() => handleScroll("midi")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Mi-di project</a>
                             <ul>
-                                <li className=""><Link href="/debug" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di info</Link></li>
-                                <li className=""><Link href="/main" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di main</Link></li>
-                                <li className=""><Link href="/chords" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Mi-di chords</Link></li>
+                                <li className=""><Link href="/debug" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di info</Link></li>
+                                <li className=""><Link href="/main" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di main</Link></li>
+                                <li className=""><Link href="/chords" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Mi-di chords</Link></li>
                             </ul>
                         </li>
                         <li>
@@ -37,9 +38,9 @@ export default function Home() {
                         <li>
                             <a onClick={() => handleScroll("legacy")} className="block rounded-lg link cursor-pointer p-2 transition-all  text-3xl font-bold tracking-wide text-dark">Other projects</a>
                             <ul>
-                                <li className=""><a href="https://kubak1p.github.io/Zegar/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Zegar</a></li>
-                                <li className=""><a href="https://github.com/KubaK1P/BCS-python/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">BCS Python</a></li>
-                                <li className=""><a href="https://github.com/KubaK1P/semiquaver" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">Semiquaver</a></li>
+                                <li className=""><a href="https://kubak1p.github.io/Zegar/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Zegar</a></li>
+                                <li className=""><a href="https://github.com/KubaK1P/BCS-python/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; BCS Python</a></li>
+                                <li className=""><a href="https://github.com/KubaK1P/semiquaver" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Semiquaver</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -69,8 +70,12 @@ export default function Home() {
                 </div>
                 <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-dark">
                     <p className="mb-6 text-lighter text-xl font-semibold tracking-wide">Here are some useful links:</p>
-                    <a className="mt-6 pt-4 pb-4 text-lg font-semibold tracking-wide text-accent hover:underline" href="https://github.com/KubaK1P" target="_blank">My Github account</a><br></br>
-                    <a className="mt-6 pt-4 pb-4 text-lg font-semibold tracking-wide text-accent hover:underline" href="https://soundcloud.com/kuba-ku-821428382" target="_blank">My Soundcloud account</a>
+                    <div className="flex gap-6">
+                    <Image className="invert" src="/github.svg" alt="Github Logo" width={45} height={45} />
+                        <a className=" pt-4 pb-4 text-lg font-semibold tracking-wide text-accent hover:underline" href="https://github.com/KubaK1P" target="_blank">My Github account</a></div><br></br>
+                    <div className="flex gap-6">
+                    <Image className="invert" src="/soundcloud.svg" alt="Github Logo" width={45} height={45} />
+                        <a className=" pt-4 pb-4 text-lg font-semibold tracking-wide text-accent hover:underline" href="https://soundcloud.com/kuba-ku-821428382" target="_blank">My Soundcloud account</a></div>
                 </div>
                 <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-light flex items-center">
                         <p className="text-dark text-xl font-semibold tracking-wide">Literally too lazy to think of something here</p>

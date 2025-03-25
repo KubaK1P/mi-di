@@ -5,14 +5,14 @@ body * {
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #012030;
   --gap: 16px;
   --dark: #012030;
   --main: #13678A;
   --accent: #45C4B0;
   --light: #9AEBA3;
   --lighter: #DAFDBA;
+  --background: #000f16;
+    --foreground: #ededed;
 }
 
 
@@ -21,13 +21,6 @@ body * {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000f16;
-    --foreground: #ededed;
-  }
 }
 
 body {
