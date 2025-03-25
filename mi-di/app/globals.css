@@ -5,6 +5,11 @@
   --background: #ffffff;
   --foreground: #012030;
   --gap: 16px;
+  --dark: #012030;
+  --main: #13678A;
+  --accent: #45C4B0;
+  --light: #9AEBA3;
+  --lighter: #DAFDBA;
 }
 
 
@@ -26,6 +31,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.snapper {
+  scroll-behavior: smooth;
 }
 
 .main-layout, .about-layout {
@@ -78,15 +87,50 @@ body {
 .about-card.bg-lighter {
   grid-area: 4 / 4 / 5 / 5 ;
 }
-/* Color Theme Swatches in Hex */
-.text-dark { color: #012030; }
-.text-main { color: #13678A; }
-.text-accent { color: #45C4B0; }
-.text-light { color: #9AEBA3; }
-.text-lighter { color: #DAFDBA; }
+/* Ensure card has rounded corners and hides overflow */
+.go-back-card {
+  position: relative;
+  width: 100%;  /* Use full width of the grid cell */
+  height: 100%; /* Use full height of the grid cell */
+  overflow: hidden;  /* Prevent content from overflowing */ 
+}
 
-.bg-dark { background: #012030; }
-.bg-main { background: #13678A; }
-.bg-accent { background: #45C4B0; }
-.bg-light { background: #9AEBA3; }
-.bg-lighter { background: #DAFDBA; }
+.stripes {
+  position: absolute;
+  width: 100%;
+  height: 5px; 
+  left: 0;
+  /* transition: transform 1s ease-in-out; */
+}
+
+/* Positioning the stripes */
+.stripes-1 { bottom: -10px; }
+.stripes-2 { bottom: -30px; }
+.stripes-3 { bottom: -60px; }
+
+.go-back-card:hover .stripes {  
+  animation: back-lines 600ms ease-in-out forwards 1 ;
+}
+
+/* Keyframe for moving stripes up */
+@keyframes back-lines {
+  0% {
+    transform: translateY(0); /* Start at the normal position */
+  }
+  100% {
+    transform: translateY(-500px); /* Move up by a significant amount (can adjust) */
+  }
+}
+
+/* Color Theme Swatches in Hex */
+.text-dark { color: var(--dark); }
+.text-main { color: var(--main); }
+.text-accent { color: var(--accent); }
+.text-light { color: var(--light); }
+.text-lighter { color: var(--lighter); }
+
+.bg-dark { background: var(--dark); }
+.bg-main { background: var(--main); }
+.bg-accent { background: var(--accent); }
+.bg-light { background: var(--light); }
+.bg-lighter { background: var(--lighter); }
