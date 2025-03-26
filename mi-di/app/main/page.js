@@ -16,7 +16,7 @@ export default function Main() {
             <div className="p-4 pb-0 w-full h-[100svh] relative">
                 <h1 className="mt-[96px] text-center text-9xl font-extrabold tracking-wide cool-text">Hello, mi-di</h1>
                 <div className="absolute bottom-0 left-0 w-full h-[27px] bg-accent z-2"></div>
-                <div className="absolute bottom-[27px] left-0 w-full h-[27px] bg-light z-1"></div>
+                <div className="absolute bottom-[27px] left-0 w-full h-[27px] cool-gradient z-1"></div>
                 <div className="absolute bottom-[54px] left-0 w-full h-[25vh] grid grid-cols-24 grid-rows-4 cool-ass-shadow z-[-5]">
                     {bars.map((bar, index) => (
                         <Bar key={index} height={bar.height} pos={bar.pos} />

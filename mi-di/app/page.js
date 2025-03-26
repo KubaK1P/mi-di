@@ -56,7 +56,7 @@ export default function Home() {
                 <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
                         <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Hi, I&apos;m Kuba!</h3>
                     </div>
-                <div className="transition-all relative left-0 hover:left-4 p-6 about-card rounded-lg bg-main">
+                <div className="transition-all relative left-0 hover:left-4 p-6 about-card about-card-responsive rounded-lg bg-main">
                     <p className="text-lighter text-xl/7 font-semibold tracking-wide">A human that has some abilities in programming and music. <br />I&apos;m an undecided person who tries every hobby that exists. Here are some things that I have tried:  </p>
                     <ul className="mt-4 mb-4 pl-2 text-lg text-lighter font-normal tracking-wide">
                         <li>&gt; Piano playing</li>
