@@ -206,6 +206,7 @@ color: var(--main);
 .text-accent { color: var(--accent); }
 .text-light { color: var(--light); }
 .text-lighter { color: var(--lighter); }
+.text-lighter-children * { color: var(--lighter); }
 
 .bg-dark { background: var(--dark); }
 .bg-main { background: var(--main); }

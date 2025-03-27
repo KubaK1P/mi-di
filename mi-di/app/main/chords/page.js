@@ -11,8 +11,8 @@ export default function Chords() {
 
   useEffect(() => {
     // ✅ Initialize synth once
-    synthRef.current = new Tone.PolySynth().toDestination();
-
+    synthRef.current = new Tone.PolySynth(Tone.AMSynth).toDestination();
+    Tone.context.lookAhead = 0;
     return () => {
       synthRef.current.dispose(); // ✅ Clean up on unmount
     };
@@ -75,6 +75,18 @@ export default function Chords() {
     setMessages((prev) => [...prev.slice(-9), newMessage]);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (synthRef?.current) {
+        synthRef.current.set({
+            envelope: {
+                [name]: parseFloat(value),
+            },
+        });
+    }
+};
+
   return (
     <div className="pt-[96px] h-[100svh] relative">
       <div>
@@ -87,6 +99,25 @@ export default function Chords() {
           activeNotes.size > 0 ? "bg-accent" : "bg-main"
         }`}
       ></div>
+              <div className="absolute bottom-[40px] right-[40px] bg-main text-lighter-children p-4 rounded-lg z-998">
+            <h3 className="text-3xl font-semibold">Envelope Generator</h3>
+            <form>
+                {["attack", "decay", "sustain", "release"].map((param) => (
+                    <div key={param} className="flex justify-between items-center p-2">
+                        <label htmlFor={param}>{param.charAt(0).toUpperCase() + param.slice(1)}:</label>
+                        <input
+                            type="range"
+                            id={param}
+                            name={param}
+                            min="0"
+                            max={(param === "sustain")? "1" : "4"}
+                            step="0.01"
+                            onChange={handleChange}
+                        />
+                    </div>
+                ))}
+            </form>
+        </div>
     </div>
   );
 }

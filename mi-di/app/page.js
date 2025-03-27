@@ -95,10 +95,10 @@ export default function Home() {
                         <p className="text-dark text-xl font-bold tracking-wide">An idea that is coming to life, terminating my time as a usless being, forcing me to do something</p>
                 </div>
                 <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-accent flex items-end">
-                        <p className="text-dark text-xl font-bold tracking-wide">An attempt to link two of my hobbies and learn something out of it (doubt so). Hopefully recognizing chords played in real time isn't too hard (subtle foreshadowing)</p>
+                        <p className="text-dark text-xl font-bold tracking-wide">An attempt to link two of my hobbies and learn something out of it (doubt so). Hopefully recognizing chords played in real time isn&apos;t too hard (subtle foreshadowing)</p>
                 </div>
                 <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-main flex items-end">
-                        <p className="text-lighter text-xl/8 font-bold tracking-wide">It's being made using JavaScript (Get rid of TS please), React and Next.js. I'm sensing three modules that each will do something. Info, Chords and Visualiser. They all require a working midi keyboard (for now?). On all of the sites aplies the same thing. NO AUDIO WILL PLAY UNLESS YOU CLICK SMTH FIRST</p>
+                        <p className="text-lighter text-xl/8 font-bold tracking-wide">It&apos;s being made using JavaScript (Get rid of TS please), React and Next.js. I&apos;m sensing three modules that each will do something. Info, Chords and Visualiser. They all require a working midi keyboard (for now?). On all of the sites aplies the same thing. NO AUDIO WILL PLAY UNLESS YOU CLICK SMTH FIRST</p>
                 </div>
                 <Back handleScroll={handleScroll} direction="bottom" row="5" column="5" color="light" scrollTo="music">Next section</Back>
             </div>
