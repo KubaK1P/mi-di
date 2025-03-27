@@ -52,7 +52,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="p-4 text-white about-layout snap-start" id="introduction" >
-                <Back handleScroll={handleScroll} row="1" column="1" color="dark" scrollTo="lobby">Go to lobby</Back>
+                <Back handleScroll={handleScroll} direction="top" row="1" column="1" color="dark" scrollTo="lobby">Go to lobby</Back>
                 <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
                         <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Hi, I&apos;m Kuba!</h3>
                     </div>
@@ -83,19 +83,31 @@ export default function Home() {
                 <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-lighter flex items-end">
                         <p className="text-dark text-xl font-semibold tracking-wide">Same thing (now it&apos;s on the bottom)</p>
                 </div>
-                <Back handleScroll={handleScroll} row="5" column="5" color="accent" scrollTo="midi">Next section</Back>
+                <Back handleScroll={handleScroll} direction="bottom" row="5" column="5" color="accent" scrollTo="midi">Next section</Back>
                     
             </div>
-            <div className="p-4 text-white h-[100vh] main-layout snap-start" id="midi" >
-                <Back handleScroll={handleScroll} row="1" column="1" color="main" scrollTo="lobby">Go to lobby</Back>
-                <Back handleScroll={handleScroll} row="5" column="5" color="light" scrollTo="music">Next section</Back>
+            <div className="p-4 text-white h-[100vh] midi-layout snap-start" id="midi" >
+                <Back handleScroll={handleScroll} direction="left" row="1" column="1" color="main" scrollTo="lobby">Go to lobby</Back>
+                <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-lighter flex items-end">
+                        <p className="text-dark text-5xl font-bold tracking-wide">Mi-di Project</p>
+                </div>
+                <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-light flex items-end">
+                        <p className="text-dark text-xl font-bold tracking-wide">An idea that is coming to life, terminating my time as a usless being, forcing me to do something</p>
+                </div>
+                <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-accent flex items-end">
+                        <p className="text-dark text-xl font-bold tracking-wide">An attempt to link two of my hobbies and learn something out of it (doubt so). Hopefully recognizing chords played in real time isn't too hard (subtle foreshadowing)</p>
+                </div>
+                <div className="transition-all relative left-0 hover:left-4 p-6 midi-card rounded-lg bg-main flex items-end">
+                        <p className="text-lighter text-xl/8 font-bold tracking-wide">It's being made using JavaScript (Get rid of TS please), React and Next.js. I'm sensing three modules that each will do something. Info, Chords and Visualiser. They all require a working midi keyboard (for now?). On all of the sites aplies the same thing. NO AUDIO WILL PLAY UNLESS YOU CLICK SMTH FIRST</p>
+                </div>
+                <Back handleScroll={handleScroll} direction="bottom" row="5" column="5" color="light" scrollTo="music">Next section</Back>
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="music" >
-                <Back handleScroll={handleScroll} row="1" column="1" color="accent" scrollTo="lobby">Go to lobby</Back>
-                <Back handleScroll={handleScroll} row="5" column="5" color="main" scrollTo="legacy">Next section</Back>
+                <Back handleScroll={handleScroll} direction="top" row="1" column="1" color="accent" scrollTo="lobby">Go to lobby</Back>
+                <Back handleScroll={handleScroll} direction="bottom" row="5" column="5" color="main" scrollTo="legacy">Next section</Back>
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="legacy" >
-                <Back handleScroll={handleScroll} row="1" column="1" color="light" scrollTo="lobby">Go to lobby</Back>
+                <Back handleScroll={handleScroll} direction="top" row="1" column="1" color="light" scrollTo="lobby">Go to lobby</Back>
             </div>
         </div>
     );

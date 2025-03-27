@@ -1,20 +1,16 @@
 "use client";
 
-export default function Back({ row, column, color, handleScroll, scrollTo, children }) {
+export default function Back({ row, column, color, handleScroll, scrollTo, children, direction }) {
     let textColor = "dark";
     
     if (color === "main" || color === "dark") {
         textColor = "lighter";
     }
-    let hoverProperty = "top";
-    if (row > 4) {
-        hoverProperty = "bottom";
-    }
     return (
         <>
             <div
                 onClick={() => handleScroll(scrollTo)}
-                className={`group transition-all flex flex-col cursor-pointer justify-end relative ${hoverProperty}-0 hover:${hoverProperty}-4 hover:brightness-90 brightness-100 go-back-card p-4 rounded-lg bg-${color}`}
+                className={`group transition-all flex flex-col cursor-pointer justify-end relative ${direction}-0 hover:${direction}-4 hover:brightness-90 brightness-100 go-back-card p-4 rounded-lg bg-${color}`}
                 style={{ gridArea: `${row} / ${column} / ${parseInt(row) + 1} / ${parseInt(column) + 1}` }}
             >
                 <div className={`stripes stripes-1 bg-${textColor}`}></div>
