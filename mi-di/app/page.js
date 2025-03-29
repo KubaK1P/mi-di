@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Back from "./components/Back/Back";
+import Popup from "./components/Popup/Popup";
+
 export default function Home() {
     const handleScroll = (section) => {
         document.getElementById(section)?.scrollIntoView({ behavior: "smooth", alignToTop: true });
@@ -109,6 +111,7 @@ export default function Home() {
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="legacy" >
                 <Back handleScroll={handleScroll} direction="top" row="1" column="1" color="light" scrollTo="lobby">Go to lobby</Back>
             </div>
+            <Popup></Popup>
         </div>
     );
 }

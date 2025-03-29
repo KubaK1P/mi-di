@@ -1,6 +1,8 @@
 "use client"
 import { useMemo } from "react";
 import Bar from "../components/Bar/Bar";
+import Popup from "../components/Popup/Popup";
+
 
 // Predefined random heights to ensure consistency across refreshes
 const PREDEFINED_HEIGHTS = [1, 3, 2, 4, 1, 2, 3, 1, 4, 3, 2, 1, 4, 2, 3, 1, 4, 3, 2, 1, 3, 2, 4, 1];
@@ -23,6 +25,7 @@ export default function Main() {
                     ))}
                 </div>
             </div>
+            <Popup></Popup>
         </>
     );
 }

@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState, useRef } from "react";
+import Popup from "@/app/components/Popup/Popup";
 import * as Tone from "tone";
 
 export default function Chords() {
@@ -7,14 +8,20 @@ export default function Chords() {
   const [messages, setMessages] = useState([]);
   const [activeNotes, setActiveNotes] = useState(new Set());
   const [midiInputs, setMidiInputs] = useState([]);
-  const synthRef = useRef(null); // ✅ Use useRef for persistent synth instance
+  const synthRef = useRef(null);
+  const [envel, setEnvel] = useState({
+    "attack": 0.10,
+    "decay": 0.30,
+    "sustain": 1.00,
+    "release": 1.00
+  });
+
 
   useEffect(() => {
-    // ✅ Initialize synth once
     synthRef.current = new Tone.PolySynth(Tone.AMSynth).toDestination();
     Tone.context.lookAhead = 0;
     return () => {
-      synthRef.current.dispose(); // ✅ Clean up on unmount
+      synthRef.current.dispose(); 
     };
   }, []);
 
@@ -26,7 +33,7 @@ export default function Chords() {
           updateMidiInputs(midi);
           midi.onstatechange = () => updateMidiInputs(midi);
           for (let input of midi.inputs.values()) {
-            if (!input.onmidimessage) {  // ✅ Prevent duplicate event listeners
+            if (!input.onmidimessage) {  
               input.onmidimessage = handleMidiMessage;
             }
           }
@@ -56,10 +63,10 @@ export default function Chords() {
     setActiveNotes((prevNotes) => {
       const newNotes = new Set(prevNotes);
       if (type === "Note On") {
-        synthRef.current.triggerAttack(Tone.Frequency(note, "midi").toNote()); // ✅ Use synthRef.current
+        synthRef.current.triggerAttack(Tone.Frequency(note, "midi").toNote()); 
         newNotes.add(note);
       } else if (type === "Note Off") {
-        synthRef.current.triggerRelease(Tone.Frequency(note, "midi").toNote()); // ✅ Use synthRef.current
+        synthRef.current.triggerRelease(Tone.Frequency(note, "midi").toNote()); 
         newNotes.delete(note);
       }
       return newNotes;
@@ -77,7 +84,10 @@ export default function Chords() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    setEnvel((prev) => ({
+      ...prev,
+      [name]: parseFloat(value)
+    }));
     if (synthRef?.current) {
         synthRef.current.set({
             envelope: {
@@ -103,8 +113,8 @@ export default function Chords() {
             <h3 className="text-3xl font-semibold">Envelope Generator</h3>
             <form>
                 {["attack", "decay", "sustain", "release"].map((param) => (
-                    <div key={param} className="flex justify-between items-center p-2">
-                        <label htmlFor={param}>{param.charAt(0).toUpperCase() + param.slice(1)}:</label>
+                    <div key={param} className="flex justify-between items-center gap-4 p-2">
+                        <label htmlFor={param}>{param.charAt(0).toUpperCase() + param.slice(1)}: {envel[param].toFixed(2)}</label>
                         <input
                             type="range"
                             id={param}
@@ -118,6 +128,7 @@ export default function Chords() {
                 ))}
             </form>
         </div>
+        <Popup></Popup>
     </div>
   );
 }
