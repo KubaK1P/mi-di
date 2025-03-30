@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import Popup from "@/app/components/Popup/Popup";
 import * as Tone from "tone";
+import { useMemo } from "react";
 
 export default function Chords() {
   const [midiAccess, setMidiAccess] = useState(null);
@@ -16,7 +17,25 @@ export default function Chords() {
     "release": 1.00
   });
 
-
+  const activeNotesArray = useMemo(() => 
+    Array.from(activeNotes).sort((a, b) => a - b), 
+    [activeNotes]
+  );
+  const noteLetters = {
+    "0": "C",
+    "1": "C#/Db",
+    "2": "D",
+    "3": "D#/Eb",
+    "4": "E",
+    "5": "F",
+    "6": "F#/Gb",
+    "7": "G",
+    "8": "G#/Ab",
+    "9": "A",
+    "10": "A#/Bb",
+    "11": "B"
+  };
+  
   useEffect(() => {
     synthRef.current = new Tone.PolySynth(Tone.AMSynth).toDestination();
     Tone.context.lookAhead = 0;
@@ -103,6 +122,14 @@ export default function Chords() {
         <h1 className="absolute top-[137px] left-[40px] chords font-bold text-7xl tracking-widest">
           Mi-di Chords
         </h1>
+      </div>
+      <div className="transition-all absolute bottom-[40px] left-[50%] transform -translate-x-1/2">
+        <ul className="flex gap-6 bg-main p-4 rounded-lg text-lighter text-xl font-semibold">
+          {(activeNotesArray.length)?
+          activeNotesArray.map((note) => (
+            <li key={note}>{noteLetters[note % 12]}{Math.floor(note / 12) - 1}</li>
+          )):(<li>##</li>)}
+        </ul>
       </div>
       <div
         className={`absolute left-[40px] bottom-[40px] rounded-lg w-[25px] h-[25px] ${
