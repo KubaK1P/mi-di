@@ -21,6 +21,22 @@ export default function Chords() {
     Array.from(activeNotes).sort((a, b) => a - b), 
     [activeNotes]
   );
+
+  const activeNotesModulo12 = useMemo(() => 
+    Array.from(new Set(
+      activeNotesArray
+        .map(note => note % 12)
+    ))
+    .sort((a, b) => a - b),  
+    [activeNotesArray]
+  );
+
+  const getChord = (activeNotes) => {
+    return "G#b country ahh chord"; // temporary
+  }
+  const detectedChord = useMemo(() => getChord(activeNotesModulo12), [activeNotesModulo12]);
+
+  
   const noteLetters = {
     "0": "C",
     "1": "C#/Db",
@@ -120,7 +136,7 @@ export default function Chords() {
     <div className="pt-[96px] h-[100svh] relative">
       <div>
         <h1 className="absolute top-[137px] left-[40px] chords font-bold text-7xl tracking-widest">
-          Mi-di Chords
+          Mi-di Chords: {detectedChord}
         </h1>
       </div>
       <div className="transition-all absolute bottom-[40px] left-[50%] transform -translate-x-1/2">
@@ -147,7 +163,7 @@ export default function Chords() {
                             id={param}
                             name={param}
                             min="0"
-                            max={(param === "sustain")? "1" : "4"}
+                            max={(param === "sustain")? "1" : "5"}
                             step="0.01"
                             onChange={handleChange}
                         />
