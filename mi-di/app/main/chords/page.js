@@ -11,6 +11,8 @@ export default function Chords() {
   const [midiInputs, setMidiInputs] = useState([]);
   const [accidental, setAccidental] = useState("_")
   const synthRef = useRef(null);
+    const analyserRef = useRef(null);
+  const canvasRef = useRef(null);
   const [envel, setEnvel] = useState({
     "attack": 0.10,
     "decay": 0.30,
@@ -123,13 +125,58 @@ export default function Chords() {
   
 
   
-  useEffect(() => {
-    synthRef.current = new Tone.PolySynth(Tone.AMSynth).toDestination();
-    Tone.context.lookAhead = 0;
-    return () => {
-      synthRef.current.dispose(); 
-    };
-  }, []);
+
+
+useEffect(() => {
+  synthRef.current = new Tone.PolySynth(Tone.AMSynth).toDestination();
+  analyserRef.current = new Tone.Analyser("fft", 2048);
+  synthRef.current.connect(analyserRef.current);
+  Tone.context.lookAhead = 0;
+
+  const canvas = canvasRef.current;
+  const ctx = canvas.getContext("2d");
+
+  let animationId;
+  const draw = () => {
+    if (analyserRef.current) {
+      const spectrum = analyserRef.current.getValue();
+      const width = canvas.width;
+      const height = canvas.height;
+
+      ctx.fillStyle = "black"; // reset background
+      ctx.fillRect(0, 0, width, height);
+
+      const minFreq = 20;
+      const maxFreq = 2000;
+
+      spectrum.forEach((value, i) => {
+        const freq = (i * Tone.context.sampleRate) / (2 * spectrum.length);
+
+        if (freq >= minFreq && freq <= maxFreq) {
+          const normX = (freq - minFreq) / (maxFreq - minFreq);
+          const x = normX * width;
+
+          const magnitude = Math.max(0, (value + 100) / 100);
+          const barHeight = magnitude * height;
+
+          ctx.fillStyle = "limegreen";
+          ctx.fillRect(x, height - barHeight, 2, barHeight);
+        }
+      });
+    }
+    animationId = requestAnimationFrame(draw);
+  };
+
+  draw();
+
+  return () => {
+    cancelAnimationFrame(animationId);
+    synthRef.current.dispose();
+    analyserRef.current.dispose();
+  };
+}, []);
+
+
 
   useEffect(() => {
     if (typeof navigator !== "undefined" && navigator.requestMIDIAccess) {
@@ -209,6 +256,14 @@ export default function Chords() {
         <h1 className="absolute top-[137px] left-[40px] chords font-bold text-7xl tracking-widest">
           Mi-di Chords: {detectedChord}
         </h1>
+      </div>
+      <div className="absolute top-[30%] left-[40px] transform">
+        <canvas
+          ref={canvasRef}
+          width={1200}
+          height={600}
+          className="bg-black rounded-lg shadow-lg"
+        />
       </div>
       <div className="transition-all absolute bottom-[40px] left-[50%] transform -translate-x-1/2">
         <ul className="flex gap-6 bg-main p-4 rounded-lg text-lighter text-xl font-semibold">

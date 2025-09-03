@@ -106,6 +106,19 @@ export default function Home() {
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="music" >
                 <Back handleScroll={handleScroll} direction="top" row="1" column="1" color="accent" scrollTo="lobby">Go to lobby</Back>
+
+                <div className="transition-all relative bottom-0 hover:bottom-4 p-4 about-card title rounded-lg bg-accent flex justify-center items-center">
+                        <h3 className="text-dark font-bold text-9xl tracking-wide underline underline-offset-12 mb-6">Well, we can call it music</h3>
+                    </div>
+                <div className="transition-all relative left-0 hover:left-4 p-6 about-card about-card-responsive rounded-lg bg-main">
+
+                </div>
+                <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-dark">
+                </div>
+                <div className="transition-all relative top-0 hover:top-4 p-6 about-card rounded-lg bg-light">
+                </div>
+                <div className="transition-all relative left-0 hover:left-4 p-6 about-card rounded-lg bg-lighter">www</div>
+
                 <Back handleScroll={handleScroll} direction="bottom" row="5" column="5" color="main" scrollTo="legacy">Next section</Back>
             </div>
             <div className="p-4 text-white h-[100vh] main-layout snap-start" id="legacy" >
