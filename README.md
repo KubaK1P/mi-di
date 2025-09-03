@@ -1,2 +1,2 @@
 # mi-di
- A live Midi visualiser made in react 
+ A live Midi visualiser ~~made~~ struggled in react 
