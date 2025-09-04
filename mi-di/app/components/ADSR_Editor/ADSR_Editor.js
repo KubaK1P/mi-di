@@ -17,24 +17,26 @@ export default function ADSR_Editor({ synth }) {
       });
   }, [envelop, synth])
 
-  return <>{Object.keys(envelop).map((key) => (
-    <div key={key} className="flex justify-between items-center gap-4 p-2">
-      <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {envelop[key].toFixed(2)}</label>
-      <input
-        type="range"
-        id={key}
-        name={key}
-        min="0"
-        max={(key === "sustain") ? "1" : "5"}
-        step="0.01"
-        value={envelop[key]}
-        onChange={(e) => {
-          setEnvelop(envelop => ({
-            ...envelop,
-            [key]: parseFloat(e.target.value)
-          }));
-        }}
-      />
-    </div>
-  ))}</>
+  return <>
+    <h3 className="text-3xl font-semibold">Envelope Generator</h3>
+    {Object.keys(envelop).map((key) => (
+      <div key={key} className="flex justify-between items-center gap-4 p-2">
+        <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {envelop[key].toFixed(2)}</label>
+        <input
+          type="range"
+          id={key}
+          name={key}
+          min="0"
+          max={(key === "sustain") ? "1" : "5"}
+          step="0.01"
+          value={envelop[key]}
+          onChange={(e) => {
+            setEnvelop(envelop => ({
+              ...envelop,
+              [key]: parseFloat(e.target.value)
+            }));
+          }}
+        />
+      </div>
+    ))}</>
 }
