@@ -1,81 +1,33 @@
 "use client"
 import { useEffect, useState, useRef } from "react";
 import Popup from "@/app/components/Popup/Popup";
-import * as Tone from "tone";
 import { useMemo } from "react";
 import ADSR_Editor from "@/app/components/ADSR_Editor/ADSR_Editor";
 import { getChord } from "@/app/utils/getChord";
 import note_names from "./note_names.json"
 import { useSynth } from "@/app/hooks/useSynth";
 import { useMidi } from "@/app/hooks/useMidi";
+import { useSpectrum } from "@/app/hooks/useSpectrum";
 
 export default function Chords() {
   const [accidental, setAccidental] = useState("_")
+  const canvasRef = useRef(null);
 
   const [{ synth }, { analyser }] = useSynth()
   const [messages, activeNotes, midiInputs] = useMidi(synth)
+  useSpectrum(analyser, canvasRef)
 
-  const canvasRef = useRef(null);
-  const noteLetters = useMemo(() => {
-    return note_names[accidental]
-  }, [accidental]);
-
-  const activeNotesArray = useMemo(() =>
-    Array.from(activeNotes).sort((a, b) => a - b),
-    [activeNotes]
-  );
-
-  const activeNotesModulo12 = useMemo(() =>
+  const noteLetters = note_names[accidental];
+  const activeNotesArray = Array.from(activeNotes).sort((a, b) => a - b);
+  const activeNotesModulo12 =
     Array.from(new Set(
       activeNotesArray
         .map(note => note % 12)
     ))
-      .sort((a, b) => a - b),
-    [activeNotesArray]
-  );
-  const detectedChord = useMemo(() => getChord(activeNotesModulo12, activeNotesArray, noteLetters), [activeNotesModulo12, activeNotesArray]);
+      .sort((a, b) => a - b)
 
+  const detectedChord = getChord(activeNotesModulo12, activeNotesArray, noteLetters);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    let animationId;
-    const draw = () => {
-      if (analyser) {
-        const spectrum = analyser.getValue();
-        const width = canvas.width;
-        const height = canvas.height;
-
-        ctx.fillStyle = "black"; // reset background
-        ctx.fillRect(0, 0, width, height);
-
-        const minFreq = 20;
-        const maxFreq = 2000;
-
-        spectrum.forEach((value, i) => {
-          const freq = (i * Tone.context.sampleRate) / (2 * spectrum.length);
-
-          if (freq >= minFreq && freq <= maxFreq) {
-            const normX = (freq - minFreq) / (maxFreq - minFreq);
-            const x = normX * width;
-
-            const magnitude = Math.max(0, (value + 100) / 100);
-            const barHeight = magnitude * height;
-
-            ctx.fillStyle = "limegreen";
-            ctx.fillRect(x, height - barHeight, 2, barHeight);
-          }
-        });
-      }
-      animationId = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    }
-  }, [])
 
   return (
     <div className="pt-[96px] h-[100svh] relative">
