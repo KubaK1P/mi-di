@@ -43,6 +43,7 @@ export default function Home() {
                                 <li className=""><a href="https://kubak1p.github.io/Zegar/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Zegar</a></li>
                                 <li className=""><a href="https://github.com/KubaK1P/BCS-python/" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; BCS Python</a></li>
                                 <li className=""><a href="https://github.com/KubaK1P/semiquaver" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; Semiquaver</a></li>
+                                <li className=""><a href="https://github.com/KubaK1P/to-do" target="_blank" className="w-[100%] block cursor-pointer link rounded-lg p-2 transition-all text-2xl font-normal tracking-wide text-dark">&gt; To-do</a></li>
                             </ul>
                         </li>
                     </ul>
